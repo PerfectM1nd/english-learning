@@ -1,40 +1,50 @@
-import {Button, FormControl, Input, InputLabel, TextField} from "@mui/material";
-import React, {useState} from "react";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
 import prisma from "@/prisma";
-import WordsList from "@/components/WordsList";
 import {createUseStyles} from "react-jss";
-import {Prisma} from "@prisma/client";
+import {Button, TextField} from "@mui/material";
+import React, {useState} from "react";
+import SentenceList from "@/components/SentenceList";
 import {useRouter} from "next/router";
 
-interface Props {
-  words: Prisma.WordSelect[]
-}
+export const getServerSideProps: GetServerSideProps = async ({query}) => {
+  const wordId = parseInt(query?.wordId as string)
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const words = await prisma.word.findMany();
+  const word = await prisma.word.findFirst({
+    where: {
+      id: wordId
+    }
+  })
+
+  const sentences = await prisma.sentence.findMany({
+    where: {
+      wordId
+    }
+  })
 
   return {
-    props: {words}
+    props: {
+      sentences,
+      word
+    }
   }
-}
+};
 
-export default function Home({words}: Props) {
-  const router = useRouter()
+const SentenceViewPage = ({sentences, word}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const classes = useStyles();
-
-  const [newWordString, setNewWordString] = useState('');
+  const router = useRouter();
+  const [newSentenceString, setNewSentenceString] = useState('');
 
   const handleInputChange = (event: any) => {
-    setNewWordString(event.target.value)
+    setNewSentenceString(event.target.value)
   }
 
   const handleWordAdd = async () => {
-    if (!newWordString) return;
+    if (!newSentenceString) return;
     const body = {
-      word: newWordString
+      word: word,
+      sentence: newSentenceString
     }
-    await fetch('/api/words', {
+    await fetch('/api/sentences', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body)
@@ -44,10 +54,13 @@ export default function Home({words}: Props) {
 
   return (
     <main>
+      <h1 className={classes.wordTitle}>
+        {word?.word}
+      </h1>
       <TextField
-        label="Добавить новое слово"
+        label="Добавить новое предложение к слову"
         variant="outlined"
-        value={newWordString}
+        value={newSentenceString}
         fullWidth
         onChange={handleInputChange}
         InputLabelProps={{
@@ -75,12 +88,16 @@ export default function Home({words}: Props) {
           ДОБАВИТЬ СЛОВО
         </Button>
       </div>
-      <WordsList words={words} />
+      <SentenceList sentences={sentences} />
     </main>
-  )
-}
+  );
+};
 
 const useStyles = createUseStyles({
+  wordTitle: {
+    color: 'white !important',
+    fontSize: 50
+  },
   input: {
     color: 'white !important'
   },
@@ -89,3 +106,5 @@ const useStyles = createUseStyles({
     borderColor: "white !important"
   }
 });
+
+export default SentenceViewPage
