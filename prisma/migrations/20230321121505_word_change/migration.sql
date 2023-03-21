@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Sentence" ALTER COLUMN "text" DROP DEFAULT;
+
+-- AlterTable
+ALTER TABLE "Word" ALTER COLUMN "text" DROP DEFAULT;

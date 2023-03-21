@@ -12,13 +12,14 @@ datasource db {
 
 model Word {
   id Int @id @default(autoincrement())
-  word String @unique
+  text String @unique
+  audioUrl String @default("")
   sentences Sentence[]
 }
 
 model Sentence {
   id Int @id @default(autoincrement())
-  sentence String
+  text String
   word Word @relation(fields: [wordId], references: [id])
   wordId Int
 }

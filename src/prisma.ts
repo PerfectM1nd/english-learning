@@ -1,5 +1,9 @@
-import {PrismaClient} from "@prisma/client";
+import {PrismaClient} from '@prisma/client';
 
-const prisma = new PrismaClient();
+let prisma: PrismaClient | null = null;
 
-export default prisma
+if (typeof window === 'undefined') {
+  prisma = new PrismaClient();
+}
+
+export default prisma as PrismaClient;
