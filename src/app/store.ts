@@ -9,12 +9,14 @@ import wordsSlice from '@/features/words/wordsSlice';
 import sentencesSlice from '@/features/sentences/sentencesSlice';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import dialogsSlice from '@/features/dialogs/dialogsSlice';
+import practiceSlice from '@/features/practiсe/practiceSlice';
 
 const reducer = combineReducers({
   dialogs: dialogsSlice,
   sentences: sentencesSlice,
   snackbar: snackbarSlice,
-  words: wordsSlice
+  words: wordsSlice,
+  practice: practiceSlice
 });
 
 export const makeStore = () =>

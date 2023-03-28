@@ -1,12 +1,18 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Sentence} from '@prisma/client';
+import {Lesson, LessonSentence, Sentence} from '@prisma/client';
 
 export interface DialogsState {
   wordCreateDialogOpen: boolean
   wordEditDialogOpen: boolean
   sentenceCreateDialogOpen: boolean,
   sentenceEditDialogOpen: boolean,
-  editingSentence: Sentence | null
+  editingSentence: Sentence | null,
+  createLessonDialogOpen: boolean,
+  editLessonDialogOpen: boolean,
+  editingLesson: Lesson | null,
+  addLessonSentenceDialogOpen: boolean,
+  editLessonSentenceDialogOpen: boolean,
+  editingLessonSentence: LessonSentence | null,
 }
 
 const initialState: DialogsState = {
@@ -14,13 +20,37 @@ const initialState: DialogsState = {
   wordEditDialogOpen: false,
   sentenceCreateDialogOpen: false,
   sentenceEditDialogOpen: false,
-  editingSentence: null
+  editingSentence: null,
+  createLessonDialogOpen: false,
+  editLessonDialogOpen: false,
+  editingLesson: null,
+  addLessonSentenceDialogOpen: false,
+  editLessonSentenceDialogOpen: false,
+  editingLessonSentence: null
 };
 
 export const dialogsSlice = createSlice({
   name: 'dialogs',
   initialState,
   reducers: {
+    setEditingLessonSentence: (state, action: PayloadAction<LessonSentence>) => {
+      state.editingLessonSentence = action.payload;
+    },
+    setEditLessonSentenceDialogOpen: (state, action: PayloadAction<boolean>) => {
+      state.editLessonSentenceDialogOpen = action.payload;
+    },
+    setAddLessonSentenceDialogOpen: (state, action: PayloadAction<boolean>) => {
+      state.addLessonSentenceDialogOpen = action.payload;
+    },
+    setEditingLesson: (state, action: PayloadAction<Lesson>) => {
+      state.editingLesson = action.payload;
+    },
+    setEditLessonDialogOpen: (state, action: PayloadAction<boolean>) => {
+      state.editLessonDialogOpen = action.payload;
+    },
+    setCreateLessonDialogOpen: (state, action: PayloadAction<boolean>) => {
+      state.createLessonDialogOpen = action.payload;
+    },
     setEditingSentence: (state, action: PayloadAction<Sentence>) => {
       state.editingSentence = action.payload;
     },
@@ -40,6 +70,12 @@ export const dialogsSlice = createSlice({
 });
 
 export const {
+  setAddLessonSentenceDialogOpen,
+  setEditLessonSentenceDialogOpen,
+  setEditingLessonSentence,
+  setEditingLesson,
+  setEditLessonDialogOpen,
+  setCreateLessonDialogOpen,
   setEditingSentence,
   setWordCreateDialogOpen,
   setWordEditDialogOpen,

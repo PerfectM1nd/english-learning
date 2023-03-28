@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
 import {useAppDispatch, useAppSelector} from '@/app/store';
 import {setSentenceCreateDialogOpen} from '@/features/dialogs/dialogsSlice';
@@ -7,6 +7,7 @@ import {Dialog} from '@mui/material';
 import PrimaryButton from '@/components/ui/PrimaryButton';
 import {createNewSentence} from '@/features/sentences/sentencesThunks';
 import MultilineInput from '@/components/form/MultilineInput';
+import SpeechRecognition, {useSpeechRecognition} from 'react-speech-recognition';
 
 const CreateSentenceDialog = () => {
   const classes = useStyles();
@@ -14,6 +15,19 @@ const CreateSentenceDialog = () => {
   const open = useAppSelector(state => state.dialogs.sentenceCreateDialogOpen);
 
   const [sentenceText, setSentenceText] = useState('');
+
+  const {
+    transcript,
+    listening
+  } = useSpeechRecognition();
+
+  useEffect(() => {
+    setSentenceText(transcript);
+  }, [transcript]);
+
+  useEffect(() => {
+    if (open) SpeechRecognition.startListening();
+  }, [open]);
 
   const handleClose = () => {
     dispatch(setSentenceCreateDialogOpen(false));
@@ -38,14 +52,23 @@ const CreateSentenceDialog = () => {
             Новое предложение
           </div>
           <MultilineInput
+            autoFocus
             minRows={10}
             label=""
             setFunction={setSentenceText}
             value={sentenceText}
           />
         </div>
-        <div className={classes.buttonContainer}>
-          <PrimaryButton buttonText="ДОБАВИТЬ" onClick={handleWordAdd}/>
+        <div className={classes.buttonsContainer}>
+          <div className={classes.buttonContainer}>
+            <PrimaryButton buttonText="ДОБАВИТЬ" onClick={handleWordAdd}/>
+          </div>
+          <div className={classes.buttonContainer}>
+            <PrimaryButton
+              buttonText={listening ? 'ОСТАНОВИТЬ ЗАПИСЬ' : 'ЗАПИСАТЬ'}
+              onClick={listening ? SpeechRecognition.stopListening : SpeechRecognition.startListening}
+            />
+          </div>
         </div>
       </div>
     </Dialog>
@@ -54,6 +77,12 @@ const CreateSentenceDialog = () => {
 
 const useStyles = createUseStyles({
   buttonContainer: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonsContainer: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

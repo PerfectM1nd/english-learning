@@ -5,6 +5,7 @@ import {fetchWords} from '@/features/words/wordsThunks';
 import {AppProps} from 'next/app';
 import MainLayout from '@/layouts/MainLayout';
 import WordsSearchBar from '@/components/search/WordsSearchBar';
+import WordsPageHeader from '@/components/words/WordsPageHeader';
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async () => {
   await store.dispatch(fetchWords());
@@ -15,6 +16,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async () =
 export default function HomePage() {
   return (
     <>
+      <WordsPageHeader />
       <WordsSearchBar />
       <WordsList />
     </>

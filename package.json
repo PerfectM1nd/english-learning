@@ -30,10 +30,14 @@
     "react-dom": "18.2.0",
     "react-jss": "^10.10.0",
     "react-redux": "^8.0.5",
+    "react-scrollable-feed": "^1.3.2",
+    "react-speech-recognition": "^3.10.0",
+    "react-textarea-autosize": "^8.4.1",
     "typescript": "5.0.2"
   },
   "devDependencies": {
     "@types/howler": "^2.2.7",
+    "@types/react-speech-recognition": "^3.9.1",
     "eslint": "^8.32.0",
     "eslint-config-next": "^13.1.6",
     "eslint-config-react-app": "^7.0.1",
@@ -42,6 +46,8 @@
     "eslint-plugin-react-jss": "^0.0.1",
     "eslint-plugin-unicorn": "^45.0.2",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "i": "^0.3.7",
+    "npm": "^9.6.2",
     "prisma": "^4.11.0"
   }
 }

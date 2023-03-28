@@ -1,35 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
 import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setSentenceEditDialogOpen} from '@/features/dialogs/dialogsSlice';
+import {setAddLessonSentenceDialogOpen, setSentenceCreateDialogOpen} from '@/features/dialogs/dialogsSlice';
 import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Dialog} from '@mui/material';
 import PrimaryButton from '@/components/ui/PrimaryButton';
-import {Sentence} from '@prisma/client';
-import {editSentence} from '@/features/sentences/sentencesThunks';
+import {createNewSentence} from '@/features/sentences/sentencesThunks';
 import MultilineInput from '@/components/form/MultilineInput';
+import SpeechRecognition, {useSpeechRecognition} from 'react-speech-recognition';
 
-const EditSentenceDialog = () => {
+const AddLessonSentenceDialog = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
-  const open = useAppSelector(state => state.dialogs.sentenceEditDialogOpen);
-  const editingSentence = useAppSelector(state => state.dialogs.editingSentence) as Sentence;
+  const open = useAppSelector(state => state.dialogs.addLessonSentenceDialogOpen);
 
   const [sentenceText, setSentenceText] = useState('');
-  
-  useEffect(() => {
-    editingSentence && setSentenceText(editingSentence.text);
-  }, [editingSentence]);
 
   const handleClose = () => {
-    dispatch(setSentenceEditDialogOpen(false));
+    dispatch(setAddLessonSentenceDialogOpen(false));
   };
 
-  const handleSentenceEdit = () => {
-    dispatch(editSentence({
-      id: editingSentence.id,
-      text: sentenceText
-    }));
+  const handleWordAdd = () => {
+    dispatch(createNewSentence(sentenceText));
     handleClose();
   };
 
@@ -44,7 +36,7 @@ const EditSentenceDialog = () => {
       <div className={classes.container}>
         <div className={classes.inputsContainer}>
           <div className={classes.inputLabel}>
-            Предложение
+            Новое предложение
           </div>
           <MultilineInput
             autoFocus
@@ -55,7 +47,9 @@ const EditSentenceDialog = () => {
           />
         </div>
         <div className={classes.buttonsContainer}>
-          <PrimaryButton buttonText="СОХРАНИТЬ" onClick={handleSentenceEdit}/>
+          <div className={classes.buttonContainer}>
+            <PrimaryButton buttonText="ДОБАВИТЬ" onClick={handleWordAdd}/>
+          </div>
         </div>
       </div>
     </Dialog>
@@ -89,4 +83,4 @@ const useStyles = createUseStyles({
   }
 });
 
-export default EditSentenceDialog;
+export default AddLessonSentenceDialog;

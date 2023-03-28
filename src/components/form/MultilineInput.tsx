@@ -10,7 +10,8 @@ interface Props {
   value: string,
   placeholder?: string,
   minRows?: number,
-  autoFocus?: boolean
+  autoFocus?: boolean,
+  ref?: React.Ref<HTMLInputElement>
 }
 
 const MultilineInput: FC<Props> = ({
@@ -20,7 +21,8 @@ const MultilineInput: FC<Props> = ({
   value,
   placeholder,
   minRows,
-  autoFocus
+  autoFocus,
+  ref
 }) => {
   const classes = useStyles();
 
@@ -39,9 +41,12 @@ const MultilineInput: FC<Props> = ({
 
   return (
     <div className={classes.inputContainer}>
-      <div className={classes.inputLabel}>
-        <span>{label}</span>
-      </div>
+      {
+        label &&
+          <div className={classes.inputLabel}>
+            <span>{label}</span>
+          </div>
+      }
       <TextField
         autoFocus={autoFocus}
         value={value}
@@ -57,7 +62,7 @@ const MultilineInput: FC<Props> = ({
           }
         }}
         inputProps={{
-          maxLength: 10000
+          maxLength: 10000,
         }}
         onBlur={handleOnBlur}
         error={error}

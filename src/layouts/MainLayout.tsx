@@ -7,6 +7,8 @@ import {PRIMARY_COLOR} from '@/app/colors';
 import CreateSentenceDialog from '@/components/dialogs/CreateSentenceDialog';
 import EditWordDialog from '@/components/dialogs/EditWordDialog';
 import EditSentenceDialog from '@/components/dialogs/EditSentenceDialog';
+import CreateLessonDialog from '@/components/dialogs/CreateLessonDialog';
+import EditLessonDialog from '@/components/dialogs/EditLessonDialog';
 export const VarelaRoundedFont = Varela_Round({
   weight: ['400'],
   subsets: ['latin'],
@@ -29,6 +31,8 @@ const MainLayout: FC<Props> = ({children}) => {
       <CreateSentenceDialog />
       <EditWordDialog />
       <EditSentenceDialog />
+      <CreateLessonDialog />
+      <EditLessonDialog />
     </main>
   );
 };

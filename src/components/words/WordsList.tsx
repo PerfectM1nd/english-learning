@@ -39,8 +39,8 @@ const useStyles = createUseStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
-    gap: 10
+    flexWrap: 'wrap',
+    marginTop: 50
   }
 });
 

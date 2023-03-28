@@ -65,17 +65,18 @@ const useStyles = createUseStyles({
     paddingRight: 30,
     display: 'flex',
     alignItems: 'center',
-    flexGrow: 1,
     backgroundColor: 'white',
     borderRadius: 3,
-    fontSize: 20,
+    fontSize: 22,
     color: 'black',
     padding: 5,
     cursor: 'pointer',
-    marginRight: 10,
+    marginRight: 20,
+    marginBottom: 20,
     minHeight: 40,
     maxHeight: 40,
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    width: 'max-content'
   }
 });
 

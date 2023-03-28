@@ -1,34 +1,42 @@
 import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
 import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setSentenceEditDialogOpen} from '@/features/dialogs/dialogsSlice';
+import {setEditLessonDialogOpen, setSentenceEditDialogOpen} from '@/features/dialogs/dialogsSlice';
 import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Dialog} from '@mui/material';
 import PrimaryButton from '@/components/ui/PrimaryButton';
-import {Sentence} from '@prisma/client';
+import {Lesson, Sentence} from '@prisma/client';
 import {editSentence} from '@/features/sentences/sentencesThunks';
 import MultilineInput from '@/components/form/MultilineInput';
+import {editLesson} from '@/features/practiсe/practiceThunks';
+import TextInput from '@/components/form/TextInput';
 
 const EditSentenceDialog = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
-  const open = useAppSelector(state => state.dialogs.sentenceEditDialogOpen);
-  const editingSentence = useAppSelector(state => state.dialogs.editingSentence) as Sentence;
+  const open = useAppSelector(state => state.dialogs.editLessonDialogOpen);
+  const editingLesson = useAppSelector(state => state.dialogs.editingLesson) as Lesson;
 
-  const [sentenceText, setSentenceText] = useState('');
-  
+  const [title, setTitle] = useState('');
+  const [level, setLevel] = useState('');
+  const [sequenceNumber, setSequenceNumber] = useState('');
+
   useEffect(() => {
-    editingSentence && setSentenceText(editingSentence.text);
-  }, [editingSentence]);
+    editingLesson && setTitle(editingLesson.title);
+    editingLesson && setLevel(editingLesson.level);
+    editingLesson && setSequenceNumber(editingLesson.sequenceNumber.toString());
+  }, [editingLesson]);
 
   const handleClose = () => {
-    dispatch(setSentenceEditDialogOpen(false));
+    dispatch(setEditLessonDialogOpen(false));
   };
 
   const handleSentenceEdit = () => {
-    dispatch(editSentence({
-      id: editingSentence.id,
-      text: sentenceText
+    dispatch(editLesson({
+      id: editingLesson.id,
+      title,
+      level,
+      sequenceNumber: +sequenceNumber
     }));
     handleClose();
   };
@@ -44,14 +52,28 @@ const EditSentenceDialog = () => {
       <div className={classes.container}>
         <div className={classes.inputsContainer}>
           <div className={classes.inputLabel}>
-            Предложение
+            Название/Тема урока
           </div>
-          <MultilineInput
-            autoFocus
-            minRows={10}
+          <TextInput
             label=""
-            setFunction={setSentenceText}
-            value={sentenceText}
+            setFunction={setTitle}
+            value={title}
+          />
+          <div className={classes.inputLabel}>
+            Уровень
+          </div>
+          <TextInput
+            label=""
+            setFunction={setLevel}
+            value={level}
+          />
+          <div className={classes.inputLabel}>
+            Порядковый номер
+          </div>
+          <TextInput
+            label=""
+            setFunction={setSequenceNumber}
+            value={sequenceNumber}
           />
         </div>
         <div className={classes.buttonsContainer}>
