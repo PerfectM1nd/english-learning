@@ -1,9 +1,8 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppSelector} from '@/app/store';
+import {useAppDispatch, useAppSelector} from '@/app/store';
 import LessonSentenceListComponent from '@/components/practise/LessonSentenceListComponent';
-import {shuffleArray} from '@/utils/array';
-import {LessonSentence} from '@prisma/client';
+import {shuffleLessonSentences} from '@/features/practiсe/practiceSlice';
 
 interface Props {
   lessonId: number
@@ -11,24 +10,20 @@ interface Props {
 
 const LessonSentencesList: FC<Props> = ({lessonId}) => {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
   const lessonSentences = useAppSelector(state => state.practice.lessonSentences)[lessonId];
+  const shuffledLessonSentences = useAppSelector(state => state.practice.shuffledLessonSentences)[lessonId];
   const repetitionModeEnabled = useAppSelector(state => state.practice.repetitionModeEnabled);
-  
-  const [lessonSentencesArray, setLessonSentencesArray] = useState<LessonSentence[]>([]);
 
   useEffect(() => {
     if (repetitionModeEnabled) {
-      const array = [...lessonSentences];
-      shuffleArray(array);
-      setLessonSentencesArray(array);
-    } else {
-      setLessonSentencesArray([...lessonSentences].reverse());
+      dispatch(shuffleLessonSentences(lessonId));
     }
   }, [repetitionModeEnabled]);
 
   return (
     <ul className={classes.container}>
-      {lessonSentencesArray?.map(lessonSentence => (
+      {(repetitionModeEnabled ? shuffledLessonSentences : lessonSentences)?.map(lessonSentence => (
         <LessonSentenceListComponent key={lessonSentence.id} lessonSentence={lessonSentence} />
       ))}
     </ul>

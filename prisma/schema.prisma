@@ -4,6 +4,7 @@
 generator client {
   provider = "prisma-client-js"
   binaryTargets = ["debian-openssl-3.0.x"]
+  output   = "@/prisma/client"
 }
 
 datasource db {
@@ -25,7 +26,6 @@ model Sentence {
   wordId Int
 }
 
-
 enum EnglishLevel {
   A0
   A1
@@ -43,11 +43,19 @@ model Lesson {
   lessonSentences LessonSentence[]
 }
 
+enum LessonSentenceStatus {
+  fluent
+  uncertain
+  mistaken
+  error
+}
+
 model LessonSentence {
   id Int @id @default(autoincrement())
   lesson Lesson @relation(fields: [lessonId], references: [id])
   lessonId Int
   englishText String
   russianText String
-  mistaken Boolean
+  status LessonSentenceStatus @default(fluent)
+  commentary String @default("")
 }

@@ -7,6 +7,8 @@ import {SnackbarProvider} from 'notistack';
 import useNotifier from '@/components/providers/NotificationProvider';
 import {NextPage} from 'next';
 import {ReactElement, ReactNode} from 'react';
+import {theme} from '@/app/theme';
+import {ThemeProvider} from '@mui/material/styles';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: AppProps, page: ReactElement) => ReactNode
@@ -25,23 +27,25 @@ const App = ({Component, pageProps}: AppPropsWithLayout) => {
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
-    <SnackbarProvider
-      maxSnack={3}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      hideIconVariant={false}
-      autoHideDuration={3000}
-      dense
-      style={{
-        fontSize: 17
-      }}
-    >
-      {
-        getLayout(pageProps,  <Component {...pageProps}/>)
-      }
-    </SnackbarProvider>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider
+        maxSnack={3}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        hideIconVariant={false}
+        autoHideDuration={3000}
+        dense
+        style={{
+          fontSize: 17
+        }}
+      >
+        {
+          getLayout(pageProps,  <Component {...pageProps}/>)
+        }
+      </SnackbarProvider>
+    </ThemeProvider>
   </>;
 };
 

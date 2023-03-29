@@ -10,9 +10,7 @@ const LessonSentencesRepetitionButton = () => {
   const repetitionModeEnabled = useAppSelector(state => state.practice.repetitionModeEnabled);
 
   const handleButtonClick = () => {
-    repetitionModeEnabled ?
-      dispatch(setRepetitionModeEnabled(false)) :
-      dispatch(setRepetitionModeEnabled(true));
+    dispatch(setRepetitionModeEnabled(!repetitionModeEnabled));
   };
 
   return (

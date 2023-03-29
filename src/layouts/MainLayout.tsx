@@ -9,6 +9,7 @@ import EditWordDialog from '@/components/dialogs/EditWordDialog';
 import EditSentenceDialog from '@/components/dialogs/EditSentenceDialog';
 import CreateLessonDialog from '@/components/dialogs/CreateLessonDialog';
 import EditLessonDialog from '@/components/dialogs/EditLessonDialog';
+import EditLessonSentenceDialog from '@/components/dialogs/EditLessonSentenceDialog';
 export const VarelaRoundedFont = Varela_Round({
   weight: ['400'],
   subsets: ['latin'],
@@ -33,6 +34,7 @@ const MainLayout: FC<Props> = ({children}) => {
       <EditSentenceDialog />
       <CreateLessonDialog />
       <EditLessonDialog />
+      <EditLessonSentenceDialog />
     </main>
   );
 };

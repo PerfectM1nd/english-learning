@@ -10,7 +10,6 @@ export interface DialogsState {
   createLessonDialogOpen: boolean,
   editLessonDialogOpen: boolean,
   editingLesson: Lesson | null,
-  addLessonSentenceDialogOpen: boolean,
   editLessonSentenceDialogOpen: boolean,
   editingLessonSentence: LessonSentence | null,
 }
@@ -24,7 +23,6 @@ const initialState: DialogsState = {
   createLessonDialogOpen: false,
   editLessonDialogOpen: false,
   editingLesson: null,
-  addLessonSentenceDialogOpen: false,
   editLessonSentenceDialogOpen: false,
   editingLessonSentence: null
 };
@@ -38,9 +36,6 @@ export const dialogsSlice = createSlice({
     },
     setEditLessonSentenceDialogOpen: (state, action: PayloadAction<boolean>) => {
       state.editLessonSentenceDialogOpen = action.payload;
-    },
-    setAddLessonSentenceDialogOpen: (state, action: PayloadAction<boolean>) => {
-      state.addLessonSentenceDialogOpen = action.payload;
     },
     setEditingLesson: (state, action: PayloadAction<Lesson>) => {
       state.editingLesson = action.payload;
@@ -70,7 +65,6 @@ export const dialogsSlice = createSlice({
 });
 
 export const {
-  setAddLessonSentenceDialogOpen,
   setEditLessonSentenceDialogOpen,
   setEditingLessonSentence,
   setEditingLesson,

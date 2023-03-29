@@ -25,7 +25,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         lessonId: editLessonSentence.lessonId,
         englishText: editLessonSentence.englishText,
         russianText: editLessonSentence.russianText,
-        mistaken: editLessonSentence.mistaken
+        status: editLessonSentence.status,
+        commentary: editLessonSentence.commentary
       }
     });
 
@@ -40,7 +41,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         lessonId: body.lessonId,
         englishText: body.englishText,
         russianText: body.russianText,
-        mistaken: body.mistaken
+        status: body.status,
+        commentary: body.commentary
       }
     });
 

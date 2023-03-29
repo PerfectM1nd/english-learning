@@ -5,6 +5,8 @@ import {IconButton} from '@mui/material';
 import {useAppDispatch, useAppSelector} from '@/app/store';
 import {DeleteForever} from '@mui/icons-material';
 import {deleteLessonSentence} from '@/features/practiсe/practiceThunks';
+import EditIcon from '@mui/icons-material/Edit';
+import {setEditingLessonSentence, setEditLessonSentenceDialogOpen} from '@/features/dialogs/dialogsSlice';
 
 interface Props {
   lessonSentence: LessonSentence
@@ -21,20 +23,53 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
     dispatch(deleteLessonSentence({lessonId: lessonSentence.lessonId, lessonSentenceId: lessonSentence.id}));
   };
 
+  const handleEditButtonClick = () => {
+    dispatch(setEditLessonSentenceDialogOpen(true));
+    dispatch(setEditingLessonSentence(lessonSentence));
+  };
+
   const showEnglishText = () => {
     setEnglishTextHidden(false);
   };
+
+  const playSound = () => {
+    const msg = new SpeechSynthesisUtterance(lessonSentence.englishText);
+    window.speechSynthesis.speak(msg);
+  };
   
+  const handleClick = () => {
+    englishTextHidden ?
+      showEnglishText() :
+      playSound();
+  };
+
   useEffect(() => {
     setEnglishTextHidden(repetitionModeEnabled);
   }, [repetitionModeEnabled]);
+  
+  const getBackgroundColor = () => {
+    switch (lessonSentence.status) {
+      case 'fluent': {
+        return '#edffeb';
+      }
+      case 'uncertain': {
+        return '#fff8d6';
+      }
+      case 'mistaken': {
+        return '#ffd2af';
+      }
+      case 'error': {
+        return '#ff9c9c';
+      }
+    }
+  };
 
   return (
     <li
-      onClick={showEnglishText}
+      onClick={handleClick}
       className={classes.container} 
       style={{
-        backgroundColor: lessonSentence.mistaken ? '#ffb4b4' : 'white'
+        backgroundColor: getBackgroundColor()
       }}
     >
       <div className={classes.textContainer}>
@@ -46,10 +81,24 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
           <span className={classes.flag}>🇺🇸</span>
           {lessonSentence.englishText}
         </div>
+        {
+          lessonSentence.commentary &&
+            <div className={classes.commentaryText}>
+              {lessonSentence.commentary}
+            </div>
+        }
       </div>
       <div className={classes.buttonContainer}>
+        <IconButton size="medium" onClick={handleEditButtonClick} sx={{
+          backgroundColor: getBackgroundColor(),
+          '&:hover': {
+            backgroundColor: 'rgba(255,255,255,0.8)',
+          }
+        }}>
+          <EditIcon />
+        </IconButton>
         <IconButton size="medium" onClick={handleDeleteButtonClick} sx={{
-          backgroundColor: lessonSentence.mistaken ? '#ffb4b4' : 'white',
+          backgroundColor: getBackgroundColor(),
           '&:hover': {
             backgroundColor: 'rgba(255,255,255,0.8)',
           }
@@ -62,6 +111,11 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
 };
 
 const useStyles = createUseStyles({
+  commentaryText: {
+    fontSize: 13,
+    color: 'gray',
+    padding: '5px 0'
+  },
   buttonContainer: {
     display: 'flex',
     justifyContent: 'center',

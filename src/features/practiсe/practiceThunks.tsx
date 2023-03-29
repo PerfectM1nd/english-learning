@@ -4,11 +4,37 @@ import api from '@/utils/api';
 import {
   addLesson,
   addLessonSentence, deleteLessonSentenceLocal,
-  editLessonLocal,
+  editLessonLocal, editLessonSentenceLocal,
   setLessons,
   setLessonSentences
 } from '@/features/practiсe/practiceSlice';
 import prisma from '@/prisma';
+import {LessonSentenceStatus} from '@/types/Lesson';
+
+export const editLessonSentence = createAsyncThunk(
+  'practice/createLessonSentence',
+  async (createData: {
+    id: number,
+    lessonId: number,
+    englishText: string,
+    russianText: string,
+    status: LessonSentenceStatus,
+    commentary: string
+  }, {dispatch}) => {
+    try {
+      const response = await api.patch('/lessonSentences', createData);
+      dispatch(editLessonSentenceLocal({
+        lessonId: createData.lessonId,
+        lessonSentenceId: createData.id,
+        lessonSentence: response.data
+      }));
+    } catch (error) {
+      showNetworkError(dispatch);
+      console.error('createLessonSentence ERROR:', error);
+      throw error;
+    }
+  }
+);
 
 export const deleteLessonSentence = createAsyncThunk(
   'practice/deleteLessonSentence',
@@ -26,7 +52,13 @@ export const deleteLessonSentence = createAsyncThunk(
 
 export const createLessonSentence = createAsyncThunk(
   'practice/createLessonSentence',
-  async (createData: { lessonId: number, englishText: string, russianText: string, mistaken: boolean }, {dispatch}) => {
+  async (createData: {
+    lessonId: number,
+    englishText: string,
+    russianText: string,
+    status: LessonSentenceStatus,
+    commentary: string
+  }, {dispatch}) => {
     try {
       const response = await api.post('/lessonSentences', createData);
       dispatch(addLessonSentence({lessonId: createData.lessonId, lessonSentence: response.data}));
@@ -45,7 +77,12 @@ export const fetchLessonSentences = createAsyncThunk(
       const lessonSentences = await prisma.lessonSentence.findMany({
         where: {
           lessonId
-        }
+        },
+        orderBy: [
+          {
+            id: 'desc'
+          }
+        ]
       });
       dispatch(setLessonSentences({lessonId, lessonSentences}));
     } catch (error) {
