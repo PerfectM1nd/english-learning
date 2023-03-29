@@ -3,7 +3,7 @@ import {wrapper} from '@/app/store';
 import {fetchWordById} from '@/features/words/wordsThunks';
 import {AppProps} from 'next/app';
 import MainLayout from '@/layouts/MainLayout';
-import WordHeader from '@/components/words/WordHeader';
+import WordHeader from '@/components/layout/WordHeader';
 import {fetchSentencesForWord} from '@/features/sentences/sentencesThunks';
 import SentenceList from '@/components/sentences/SentenceList';
 import {setCurrentViewWord} from '@/features/words/wordsSlice';

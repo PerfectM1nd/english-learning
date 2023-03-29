@@ -4,7 +4,6 @@
 generator client {
   provider = "prisma-client-js"
   binaryTargets = ["debian-openssl-3.0.x"]
-  output   = "@/prisma/client"
 }
 
 datasource db {
@@ -38,7 +37,6 @@ enum EnglishLevel {
 model Lesson {
   id Int @id @default(autoincrement())
   level EnglishLevel
-  sequenceNumber Int @unique
   title String
   lessonSentences LessonSentence[]
 }

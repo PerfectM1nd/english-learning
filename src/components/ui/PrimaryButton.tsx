@@ -9,7 +9,6 @@ interface Props {
   onClick(): void,
   textClassName?: string,
   containerClassName?: string,
-  submit?: undefined | true,
   loading?: boolean,
   width?: number,
   disabled?: boolean
@@ -20,7 +19,6 @@ const PrimaryButton: FC<Props> = ({
   onClick,
   textClassName,
   containerClassName,
-  submit,
   loading,
   width,
   disabled
@@ -49,7 +47,6 @@ const PrimaryButton: FC<Props> = ({
 
 const useStyles = createUseStyles(({disabled}: {disabled: boolean}) => ({
   container: {
-    marginTop: 20,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

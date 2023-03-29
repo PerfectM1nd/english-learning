@@ -95,7 +95,7 @@ export const fetchLessonSentences = createAsyncThunk(
 
 export const editLesson = createAsyncThunk(
   'practice/editLesson',
-  async (editData: { id: number, title: string, level: string, sequenceNumber: number }, {dispatch}) => {
+  async (editData: { id: number, title: string, level: string }, {dispatch}) => {
     try {
       const response = await api.patch('/lessons', editData);
       dispatch(editLessonLocal(response.data));
@@ -111,7 +111,11 @@ export const fetchLessons = createAsyncThunk(
   'practice/fetchLessons',
   async (_, {dispatch}) => {
     try {
-      const lessons = await prisma.lesson.findMany();
+      const lessons = await prisma.lesson.findMany({
+        orderBy: {
+          id: 'desc'
+        }
+      });
       dispatch(setLessons(lessons));
     } catch (error) {
       showNetworkError(dispatch);
@@ -123,7 +127,7 @@ export const fetchLessons = createAsyncThunk(
 
 export const createNewLesson = createAsyncThunk(
   'practice/createNewLesson',
-  async (createData: { title: string, level: string, sequenceNumber: number }, {dispatch}) => {
+  async (createData: { title: string, level: string }, {dispatch}) => {
     try {
       const response = await api.post('/lessons', createData);
       dispatch(addLesson(response.data));

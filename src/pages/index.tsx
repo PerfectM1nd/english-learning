@@ -1,24 +1,11 @@
 import React, {ReactElement} from 'react';
-import WordsList from '@/components/words/WordsList';
-import {wrapper} from '@/app/store';
-import {fetchWords} from '@/features/words/wordsThunks';
 import {AppProps} from 'next/app';
 import MainLayout from '@/layouts/MainLayout';
-import WordsSearchBar from '@/components/search/WordsSearchBar';
-import WordsPageHeader from '@/components/words/WordsPageHeader';
-
-export const getServerSideProps = wrapper.getServerSideProps(store => async () => {
-  await store.dispatch(fetchWords());
-
-  return {props: {}};
-});
 
 export default function HomePage() {
   return (
     <>
-      <WordsPageHeader />
-      <WordsSearchBar />
-      <WordsList />
+      Главная страница, контента еще нет
     </>
   );
 }

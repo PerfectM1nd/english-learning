@@ -63,12 +63,6 @@ const EditSentenceDialog = () => {
 };
 
 const useStyles = createUseStyles({
-  buttonContainer: {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   buttonsContainer: {
     display: 'flex',
     justifyContent: 'center',

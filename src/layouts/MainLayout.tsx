@@ -10,6 +10,7 @@ import EditSentenceDialog from '@/components/dialogs/EditSentenceDialog';
 import CreateLessonDialog from '@/components/dialogs/CreateLessonDialog';
 import EditLessonDialog from '@/components/dialogs/EditLessonDialog';
 import EditLessonSentenceDialog from '@/components/dialogs/EditLessonSentenceDialog';
+import useNotifier from '@/components/providers/NotificationProvider';
 export const VarelaRoundedFont = Varela_Round({
   weight: ['400'],
   subsets: ['latin'],
@@ -23,6 +24,8 @@ interface Props {
 
 const MainLayout: FC<Props> = ({children}) => {
   const classes = useStyles();
+
+  useNotifier();
 
   return (
     <main className={`${classes.container} ${VarelaRoundedFont.className}`}>

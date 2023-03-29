@@ -2,9 +2,9 @@ import React, {ReactElement} from 'react';
 import {wrapper} from '@/app/store';
 import {AppProps} from 'next/app';
 import MainLayout from '@/layouts/MainLayout';
-import LessonsHeader from '@/components/practise/LessonsHeader';
+import LessonsHeader from '@/components/layout/LessonsHeader';
 import {fetchLessons} from '@/features/practiсe/practiceThunks';
-import LessonsList from '@/components/practise/LessonsList';
+import LessonsList from '@/components/practise/lesson/LessonsList';
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async () => {
   await store.dispatch(fetchLessons());

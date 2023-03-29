@@ -11,7 +11,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
       data: {
         level: editLesson.level,
-        sequenceNumber: editLesson.sequenceNumber,
         title: editLesson.title
       }
     });
@@ -25,7 +24,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const result = await prisma.lesson.create({
       data: {
         level: body.level,
-        sequenceNumber: body.sequenceNumber,
         title: body.title
       }
     });

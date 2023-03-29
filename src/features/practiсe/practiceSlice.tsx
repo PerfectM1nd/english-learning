@@ -63,7 +63,7 @@ export const practiceSlice = createSlice({
       state.lessons = action.payload;
     },
     addLesson: (state, action: PayloadAction<Lesson>) => {
-      state.lessons.push(action.payload);
+      state.lessons.unshift(action.payload);
     },
   },
   extraReducers: {

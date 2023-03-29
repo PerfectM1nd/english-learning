@@ -10,8 +10,7 @@ interface Props {
   value: string,
   placeholder?: string,
   minRows?: number,
-  autoFocus?: boolean,
-  ref?: React.Ref<HTMLInputElement>
+  autoFocus?: boolean
 }
 
 const MultilineInput: FC<Props> = ({
@@ -21,8 +20,7 @@ const MultilineInput: FC<Props> = ({
   value,
   placeholder,
   minRows,
-  autoFocus,
-  ref
+  autoFocus
 }) => {
   const classes = useStyles();
 
@@ -104,19 +102,7 @@ const useStyles = createUseStyles({
   },
   inputContainer: {
     position: 'relative'
-  },
-  mobilePlaceholder: {
-    position: 'absolute',
-    top: 42,
-    left: 15,
-    zIndex: -1
-  },
-  desktopPlaceholder: {
-    position: 'absolute',
-    top: 56,
-    left: 15,
-    zIndex: -1
-  },
+  }
 });
 
 export default MultilineInput;

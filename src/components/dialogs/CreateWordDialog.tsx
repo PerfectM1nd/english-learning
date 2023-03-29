@@ -47,7 +47,8 @@ const CreateWordDialog = () => {
             value={text}
           />
           <div className={classes.inputLabel}>
-            Ссылка на аудио
+            Ссылка на аудио mp3 (например с сайта <a target="_blank" rel="noopener noreferrer" href="https://dictionary.cambridge.org">https://dictionary.cambridge.org</a>).
+            <br/>Если оставить пустым, будет машинная озвучка
           </div>
           <TextInput
             label=""

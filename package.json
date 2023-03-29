@@ -36,6 +36,7 @@
     "typescript": "5.0.2"
   },
   "devDependencies": {
+    "eslint-plugin-jss": "file:packages/eslint-plugin-jss",
     "@types/howler": "^2.2.7",
     "@types/react-speech-recognition": "^3.9.1",
     "eslint": "^8.32.0",

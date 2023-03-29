@@ -3,10 +3,12 @@ import {createUseStyles} from 'react-jss';
 import {useAppDispatch, useAppSelector} from '@/app/store';
 import {setCreateLessonDialogOpen} from '@/features/dialogs/dialogsSlice';
 import {DialogTransition} from '@/components/dialogs/DialogTransition';
-import {Dialog} from '@mui/material';
+import {Dialog, MenuItem} from '@mui/material';
 import TextInput from '@/components/form/TextInput';
 import PrimaryButton from '@/components/ui/PrimaryButton';
 import {createNewLesson} from '@/features/practiсe/practiceThunks';
+import {EnglishLevel} from '@prisma/client';
+import SelectInput from '@/components/form/SelectInput';
 
 const CreateLessonDialog = () => {
   const classes = useStyles();
@@ -15,7 +17,6 @@ const CreateLessonDialog = () => {
 
   const [title, setTitle] = useState('');
   const [level, setLevel] = useState('');
-  const [sequenceNumber, setSequenceNumber] = useState('');
 
   const handleClose = () => {
     dispatch(setCreateLessonDialogOpen(false));
@@ -24,10 +25,13 @@ const CreateLessonDialog = () => {
   const handleWordAdd = () => {
     dispatch(createNewLesson({
       title,
-      level,
-      sequenceNumber: +sequenceNumber
+      level
     }));
     handleClose();
+  };
+
+  const handleLevelChange = (value: string) => {
+    value && setLevel(value);
   };
 
   return (
@@ -41,7 +45,7 @@ const CreateLessonDialog = () => {
       <div className={classes.container}>
         <div className={classes.inputsContainer}>
           <div className={classes.inputLabel}>
-            Название/Тема урока
+            Название видео / Тема урока / Тема грамматики
           </div>
           <TextInput
             label=""
@@ -51,19 +55,20 @@ const CreateLessonDialog = () => {
           <div className={classes.inputLabel}>
             Уровень
           </div>
-          <TextInput
-            label=""
-            setFunction={setLevel}
-            value={level}
-          />
-          <div className={classes.inputLabel}>
-            Порядковый номер
+          <div className={classes.selectInput}>
+            <SelectInput
+              setFunction={handleLevelChange}
+              value={level}
+              required
+              label=""
+            >
+              {
+                Object.values(EnglishLevel).map(el => (
+                  <MenuItem key={el} value={el}>{el}</MenuItem>
+                ))
+              }
+            </SelectInput>
           </div>
-          <TextInput
-            label=""
-            setFunction={setSequenceNumber}
-            value={sequenceNumber}
-          />
         </div>
         <div className={classes.buttonContainer}>
           <PrimaryButton buttonText="ДОБАВИТЬ" onClick={handleWordAdd}/>
@@ -74,6 +79,9 @@ const CreateLessonDialog = () => {
 };
 
 const useStyles = createUseStyles({
+  selectInput: {
+    width: 100
+  },
   buttonContainer: {
     display: 'flex',
     justifyContent: 'center',

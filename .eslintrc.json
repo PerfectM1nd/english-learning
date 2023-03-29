@@ -23,7 +23,8 @@
     "unused-imports",
     "mui-unused-classes",
     "react-jss",
-    "unicorn"
+    "unicorn",
+    "jss"
   ],
   "rules": {
     "semi": "warn",
@@ -69,6 +70,7 @@
     "unicorn/prefer-node-protocol": "off",
     "unicorn/prefer-dom-node-remove": "off",
     "unicorn/no-useless-undefined": "off",
+    "jss/unused-classes": 2,
     "no-restricted-imports": [
       "error",
       {

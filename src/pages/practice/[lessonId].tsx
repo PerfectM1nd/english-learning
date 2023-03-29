@@ -3,10 +3,10 @@ import {wrapper} from '@/app/store';
 import {AppProps} from 'next/app';
 import MainLayout from '@/layouts/MainLayout';
 import {fetchLessonSentences} from '@/features/practiсe/practiceThunks';
-import LessonSentencesList from '@/components/practise/LessonSentencesList';
+import LessonSentencesList from '@/components/practise/lessonSentences/LessonSentencesList';
 import {NextPageWithLayout} from '@/pages/_app';
-import LessonSentenceAddBlock from '@/components/practise/LessonSentenceAddBlock';
-import LessonSentencesRepetitionButton from '@/components/practise/LessonSentencesRepetitionButton';
+import LessonSentenceAddBlock from '@/components/practise/lessonSentences/LessonSentenceAddBlock';
+import LessonSentencesHeader from '@/components/layout/LessonSentencesHeader';
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({query}) => {
   const lessonId = Number.parseInt(query?.lessonId as string);
@@ -24,7 +24,7 @@ interface Props {
 const LessonSentencesPage: NextPageWithLayout<Props> = ({lessonId}) => {
   return (
     <>
-      <LessonSentencesRepetitionButton />
+      <LessonSentencesHeader />
       <LessonSentenceAddBlock lessonId={lessonId} />
       <LessonSentencesList lessonId={lessonId}/>
     </>

@@ -4,7 +4,6 @@ import Head from 'next/head';
 import '../global-styles.css';
 import {wrapper} from '@/app/store';
 import {SnackbarProvider} from 'notistack';
-import useNotifier from '@/components/providers/NotificationProvider';
 import {NextPage} from 'next';
 import {ReactElement, ReactNode} from 'react';
 import {theme} from '@/app/theme';
@@ -19,8 +18,6 @@ type AppPropsWithLayout = AppProps & {
 }
 
 const App = ({Component, pageProps}: AppPropsWithLayout) => {
-  useNotifier();
-
   const getLayout = Component.getLayout ?? ((pageProps, page) => page);
 
   return <>

@@ -17,12 +17,10 @@ const EditSentenceDialog = () => {
 
   const [title, setTitle] = useState('');
   const [level, setLevel] = useState('');
-  const [sequenceNumber, setSequenceNumber] = useState('');
 
   useEffect(() => {
     editingLesson && setTitle(editingLesson.title);
     editingLesson && setLevel(editingLesson.level);
-    editingLesson && setSequenceNumber(editingLesson.sequenceNumber.toString());
   }, [editingLesson]);
 
   const handleClose = () => {
@@ -33,8 +31,7 @@ const EditSentenceDialog = () => {
     dispatch(editLesson({
       id: editingLesson.id,
       title,
-      level,
-      sequenceNumber: +sequenceNumber
+      level
     }));
     handleClose();
   };
@@ -65,14 +62,6 @@ const EditSentenceDialog = () => {
             setFunction={setLevel}
             value={level}
           />
-          <div className={classes.inputLabel}>
-            Порядковый номер
-          </div>
-          <TextInput
-            label=""
-            setFunction={setSequenceNumber}
-            value={sequenceNumber}
-          />
         </div>
         <div className={classes.buttonsContainer}>
           <PrimaryButton buttonText="СОХРАНИТЬ" onClick={handleSentenceEdit}/>
@@ -83,12 +72,6 @@ const EditSentenceDialog = () => {
 };
 
 const useStyles = createUseStyles({
-  buttonContainer: {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   buttonsContainer: {
     display: 'flex',
     justifyContent: 'center',
