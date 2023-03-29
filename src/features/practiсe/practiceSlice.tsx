@@ -45,7 +45,7 @@ export const practiceSlice = createSlice({
     },
     addLessonSentence: (state, action: PayloadAction<{lessonId: number, lessonSentence: LessonSentence}>) => {
       if (state.lessonSentences[action.payload.lessonId]?.length) {
-        state.lessonSentences[action.payload.lessonId].push(action.payload.lessonSentence);
+        state.lessonSentences[action.payload.lessonId].unshift(action.payload.lessonSentence);
       } else {
         state.lessonSentences[action.payload.lessonId] = [action.payload.lessonSentence];
       }

@@ -71,7 +71,7 @@ const useStyles = createUseStyles({
     color: 'black',
     padding: '0 5px',
     cursor: 'pointer',
-    marginRight: 10,
+    marginBottom: 10,
     minHeight: 40,
     boxSizing: 'border-box',
     width: 600

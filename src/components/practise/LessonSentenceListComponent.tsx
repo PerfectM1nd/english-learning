@@ -82,7 +82,7 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
           {lessonSentence.englishText}
         </div>
         {
-          lessonSentence.commentary &&
+          lessonSentence.commentary && !englishTextHidden &&
             <div className={classes.commentaryText}>
               {lessonSentence.commentary}
             </div>
