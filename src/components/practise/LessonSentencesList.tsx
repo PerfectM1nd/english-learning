@@ -1,8 +1,9 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
 import {useAppSelector} from '@/app/store';
 import LessonSentenceListComponent from '@/components/practise/LessonSentenceListComponent';
-import ScrollableFeed from 'react-scrollable-feed';
+import {shuffleArray} from '@/utils/array';
+import {LessonSentence} from '@prisma/client';
 
 interface Props {
   lessonId: number
@@ -11,23 +12,32 @@ interface Props {
 const LessonSentencesList: FC<Props> = ({lessonId}) => {
   const classes = useStyles();
   const lessonSentences = useAppSelector(state => state.practice.lessonSentences)[lessonId];
+  const repetitionModeEnabled = useAppSelector(state => state.practice.repetitionModeEnabled);
+  
+  const [lessonSentencesArray, setLessonSentencesArray] = useState<LessonSentence[]>([]);
+
+  useEffect(() => {
+    if (repetitionModeEnabled) {
+      const array = [...lessonSentences];
+      shuffleArray(array);
+      setLessonSentencesArray(array);
+    } else {
+      setLessonSentencesArray([...lessonSentences].reverse());
+    }
+  }, [repetitionModeEnabled]);
 
   return (
-    // @ts-ignore
-    <ScrollableFeed className={classes.container}>
-      {lessonSentences?.map(lessonSentence => (
+    <ul className={classes.container}>
+      {lessonSentencesArray?.map(lessonSentence => (
         <LessonSentenceListComponent key={lessonSentence.id} lessonSentence={lessonSentence} />
       ))}
-    </ScrollableFeed>
+    </ul>
   );
 };
 
 const useStyles = createUseStyles({
   container: {
-    overflowY: 'auto',
-    '&::-webkit-scrollbar': {
-      display: 'none'
-    }
+    marginTop: 10
   }
 });
 

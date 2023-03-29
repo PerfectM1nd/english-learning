@@ -6,6 +6,7 @@ import {fetchLessonSentences} from '@/features/practiсe/practiceThunks';
 import LessonSentencesList from '@/components/practise/LessonSentencesList';
 import {NextPageWithLayout} from '@/pages/_app';
 import LessonSentenceAddBlock from '@/components/practise/LessonSentenceAddBlock';
+import LessonSentencesRepetitionButton from '@/components/practise/LessonSentencesRepetitionButton';
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({query}) => {
   const lessonId = Number.parseInt(query?.lessonId as string);
@@ -23,8 +24,9 @@ interface Props {
 const LessonSentencesPage: NextPageWithLayout<Props> = ({lessonId}) => {
   return (
     <>
-      <LessonSentencesList lessonId={lessonId}/>
+      <LessonSentencesRepetitionButton />
       <LessonSentenceAddBlock lessonId={lessonId} />
+      <LessonSentencesList lessonId={lessonId}/>
     </>
   );
 };

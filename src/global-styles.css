@@ -6,3 +6,10 @@ body, html {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+ul, li {
+  margin:0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: none;
+}

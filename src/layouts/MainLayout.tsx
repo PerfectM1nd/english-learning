@@ -45,7 +45,7 @@ const useStyles = createUseStyles({
     flexDirection: 'column',
     alignItems: 'center',
     width: '100vw',
-    height: '100vh',
+    minHeight: '100vh',
     backgroundColor: PRIMARY_COLOR
   }
 });

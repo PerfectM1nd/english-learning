@@ -4,18 +4,23 @@ import {HYDRATE} from 'next-redux-wrapper';
 
 export interface PracticeState {
   lessons: Lesson[],
-  lessonSentences: Record<number, LessonSentence[]>
+  lessonSentences: Record<number, LessonSentence[]>,
+  repetitionModeEnabled: boolean
 }
 
 const initialState: PracticeState = {
   lessons: [],
-  lessonSentences: {}
+  lessonSentences: {},
+  repetitionModeEnabled: false
 };
 
 export const practiceSlice = createSlice({
   name: 'practice',
   initialState,
   reducers: {
+    setRepetitionModeEnabled: (state, action: PayloadAction<boolean>) => {
+      state.repetitionModeEnabled = action.payload;
+    },
     deleteLessonSentenceLocal: (state, action: PayloadAction<{lessonId: number, lessonSentenceId: number}>) => {
       state.lessonSentences[action.payload.lessonId] = state.lessonSentences[action.payload.lessonId]
         .filter(sentence => sentence.id !== action.payload.lessonSentenceId);
@@ -52,6 +57,7 @@ export const practiceSlice = createSlice({
 });
 
 export const {
+  setRepetitionModeEnabled,
   deleteLessonSentenceLocal,
   addLessonSentence,
   editLessonLocal,
