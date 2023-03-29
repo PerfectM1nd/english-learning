@@ -1,14 +1,10 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
 import {IconButton} from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
 import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
 import {useAppDispatch} from '@/app/store';
 import {
-  setSentenceCreateDialogOpen,
-  setWordCreateDialogOpen,
-  setWordEditDialogOpen
+  setSentenceCreateDialogOpen
 } from '@/features/dialogs/dialogsSlice';
 import {useRouter} from 'next/router';
 
@@ -18,7 +14,7 @@ const LessonSentencesPageHeader = () => {
   const router = useRouter();
 
   const handleAddButtonClick = () => {
-      dispatch(setSentenceCreateDialogOpen(true))
+    dispatch(setSentenceCreateDialogOpen(true));
   };
 
   return (

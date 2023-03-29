@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
 import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setEditLessonDialogOpen, setSentenceEditDialogOpen} from '@/features/dialogs/dialogsSlice';
+import {setEditLessonDialogOpen} from '@/features/dialogs/dialogsSlice';
 import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Dialog} from '@mui/material';
 import PrimaryButton from '@/components/ui/PrimaryButton';
-import {Lesson, Sentence} from '@prisma/client';
-import {editSentence} from '@/features/sentences/sentencesThunks';
-import MultilineInput from '@/components/form/MultilineInput';
+import {Lesson} from '@prisma/client';
 import {editLesson} from '@/features/practiсe/practiceThunks';
 import TextInput from '@/components/form/TextInput';
 
