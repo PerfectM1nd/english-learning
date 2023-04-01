@@ -19,7 +19,7 @@ export const editLessonSentence = createAsyncThunk(
     lessonId: number,
     englishText: string,
     russianText: string,
-    status: LessonSentenceStatus,
+    status: keyof typeof LessonSentenceStatus,
     commentary: string
   }, {dispatch}) => {
     try {
