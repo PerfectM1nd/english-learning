@@ -1,7 +1,8 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
 import {Howl} from 'howler';
-import {useAppSelector} from '@/app/store';
+
+import {useAppSelector} from '$/store';
 
 const WordHeader = () => {
   const classes = useStyles();

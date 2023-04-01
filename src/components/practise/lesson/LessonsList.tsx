@@ -1,7 +1,8 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppSelector} from '@/app/store';
-import LessonListComponent from '@/components/practise/lesson/LessonListComponent';
+
+import {useAppSelector} from '$/store';
+import LessonListComponent from '$/components/practise/lesson/LessonListComponent';
 
 const LessonsList = () => {
   const classes = useStyles();

@@ -1,8 +1,9 @@
 import React, {FC} from 'react';
 import {CircularProgress} from '@mui/material';
 import {createUseStyles} from 'react-jss';
-import TouchableOpacity from '@/components/ui/TouchableOpacity';
-import {DISABLED_BUTTON_COLOR, LIGHTENED_PRIMARY_COLOR, PRIMARY_COLOR} from '@/app/colors';
+
+import TouchableOpacity from '$/components/ui/TouchableOpacity';
+import {DISABLED_BUTTON_COLOR, LIGHTENED_PRIMARY_COLOR, PRIMARY_COLOR} from '$/app/colors';
 
 interface Props {
   buttonText: string,

@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setEditLessonDialogOpen} from '@/features/dialogs/dialogsSlice';
-import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Dialog} from '@mui/material';
-import PrimaryButton from '@/components/ui/PrimaryButton';
 import {Lesson} from '@prisma/client';
-import {editLesson} from '@/features/practiсe/practiceThunks';
-import TextInput from '@/components/form/TextInput';
+
+import {useAppDispatch, useAppSelector} from '$/store';
+import {setEditLessonDialogOpen} from '$/features/dialogs/dialogsSlice';
+import {DialogTransition} from '$/components/dialogs/DialogTransition';
+import PrimaryButton from '$/components/ui/PrimaryButton';
+import {editLesson} from '$/features/practiсe/practiceThunks';
+import TextInput from '$/components/form/TextInput';
 
 const EditSentenceDialog = () => {
   const classes = useStyles();

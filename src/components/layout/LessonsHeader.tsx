@@ -1,10 +1,11 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
 import AddIcon from '@mui/icons-material/Add';
-import {useAppDispatch} from '@/app/store';
+
+import {useAppDispatch} from '$/store';
 import {
   setCreateLessonDialogOpen
-} from '@/features/dialogs/dialogsSlice';
+} from '$/features/dialogs/dialogsSlice';
 
 const LessonsHeader = () => {
   const classes = useStyles();

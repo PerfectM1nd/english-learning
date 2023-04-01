@@ -4,7 +4,8 @@ import {Word} from '@prisma/client';
 import {createUseStyles} from 'react-jss';
 import {Howl} from 'howler';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-import TouchableOpacity from '@/components/ui/TouchableOpacity';
+
+import TouchableOpacity from '$/components/ui/TouchableOpacity';
 
 interface Props {
   word: Word

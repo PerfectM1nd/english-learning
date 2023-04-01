@@ -1,8 +1,9 @@
 import React, {FC, useEffect} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppDispatch, useAppSelector} from '@/app/store';
-import LessonSentenceListComponent from '@/components/practise/lessonSentences/LessonSentenceListComponent';
-import {shuffleLessonSentences} from '@/features/practiсe/practiceSlice';
+
+import {useAppDispatch, useAppSelector} from '$/store';
+import LessonSentenceListComponent from '$/components/practise/lessonSentences/LessonSentenceListComponent';
+import {shuffleLessonSentences} from '$/features/practiсe/practiceSlice';
 
 interface Props {
   lessonId: number

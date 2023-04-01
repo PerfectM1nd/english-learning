@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {createUseStyles} from 'react-jss';
 import {Dialog, IconButton} from '@mui/material';
 import {InfoRounded} from '@mui/icons-material';
-import {DialogTransition} from '@/components/dialogs/DialogTransition';
+
+import {DialogTransition} from '$/components/dialogs/DialogTransition';
 
 const LessonSentenceGuideButton = () => {
   const classes = useStyles();

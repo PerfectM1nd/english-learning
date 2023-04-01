@@ -2,8 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
-  binaryTargets = ["debian-openssl-3.0.x"]
+  provider      = "prisma-client-js"
+  binaryTargets = ["debian-openssl-3.0.x", "darwin-arm64"]
 }
 
 datasource db {
@@ -12,16 +12,16 @@ datasource db {
 }
 
 model Word {
-  id Int @id @default(autoincrement())
-  text String @unique
-  audioUrl String @default("")
+  id        Int        @id @default(autoincrement())
+  text      String     @unique
+  audioUrl  String     @default("")
   sentences Sentence[]
 }
 
 model Sentence {
-  id Int @id @default(autoincrement())
-  text String
-  word Word @relation(fields: [wordId], references: [id])
+  id     Int    @id @default(autoincrement())
+  text   String
+  word   Word   @relation(fields: [wordId], references: [id])
   wordId Int
 }
 
@@ -35,9 +35,9 @@ enum EnglishLevel {
 }
 
 model Lesson {
-  id Int @id @default(autoincrement())
-  level EnglishLevel
-  title String
+  id              Int              @id @default(autoincrement())
+  level           EnglishLevel
+  title           String
   lessonSentences LessonSentence[]
 }
 
@@ -49,11 +49,11 @@ enum LessonSentenceStatus {
 }
 
 model LessonSentence {
-  id Int @id @default(autoincrement())
-  lesson Lesson @relation(fields: [lessonId], references: [id])
-  lessonId Int
+  id          Int                  @id @default(autoincrement())
+  lesson      Lesson               @relation(fields: [lessonId], references: [id])
+  lessonId    Int
   englishText String
   russianText String
-  status LessonSentenceStatus @default(fluent)
-  commentary String @default("")
+  status      LessonSentenceStatus @default(fluent)
+  commentary  String               @default("")
 }

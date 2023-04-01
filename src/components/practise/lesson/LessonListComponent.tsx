@@ -3,13 +3,14 @@ import {createUseStyles} from 'react-jss';
 import {Lesson} from '@prisma/client';
 import {IconButton} from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import {useRouter} from 'next/router';
+
 import {
   setEditingLesson,
   setEditLessonDialogOpen
-} from '@/features/dialogs/dialogsSlice';
-import {useAppDispatch} from '@/app/store';
-import TouchableOpacity from '@/components/ui/TouchableOpacity';
-import {useRouter} from 'next/router';
+} from '$/features/dialogs/dialogsSlice';
+import {useAppDispatch} from '$/store';
+import TouchableOpacity from '$/components/ui/TouchableOpacity';
 
 interface Props {
   lesson: Lesson

@@ -1,8 +1,10 @@
 import {NextApiRequest, NextApiResponse} from 'next';
-import prisma from '@/prisma';
+
+import prisma from '$/prisma';
+import {HttpMethodEnum} from '$/enums';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'DELETE') {
+  if (req.method === HttpMethodEnum.DELETE) {
     const lessonSentenceId = req.query.lessonSentenceId as string;
 
     const result = await prisma.lessonSentence.delete({
@@ -14,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.json(result);
   }
 
-  if (req.method === 'PATCH') {
+  if (req.method === HttpMethodEnum.PATCH) {
     const editLessonSentence = req.body;
 
     const result = await prisma.lessonSentence.update({
@@ -33,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.json(result);
   }
 
-  if (req.method === 'POST') {
+  if (req.method === HttpMethodEnum.POST) {
     const body = req.body;
 
     const result = await prisma.lessonSentence.create({

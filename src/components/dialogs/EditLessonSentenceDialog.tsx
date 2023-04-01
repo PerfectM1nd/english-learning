@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppDispatch, useAppSelector} from '@/app/store';
-import {
-  setEditLessonSentenceDialogOpen
-} from '@/features/dialogs/dialogsSlice';
-import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Checkbox, Dialog, FormControlLabel, Typography} from '@mui/material';
 import TextareaAutosize from 'react-textarea-autosize';
-import {theme} from '@/app/theme';
-import {LessonSentenceStatus} from '@/types/Lesson';
-import {editLessonSentence} from '@/features/practiсe/practiceThunks';
 import SpeechRecognition from 'react-speech-recognition';
-import {LessonSentence} from '@prisma/client';
-import PrimaryButton from '@/components/ui/PrimaryButton';
+import {LessonSentence,LessonSentenceStatus} from '@prisma/client';
+
+import {useAppDispatch, useAppSelector} from '$/store';
+import {
+  setEditLessonSentenceDialogOpen
+} from '$/features/dialogs/dialogsSlice';
+import {DialogTransition} from '$/components/dialogs/DialogTransition';
+import {theme} from '$/app/theme';
+import {editLessonSentence} from '$/features/practiсe/practiceThunks';
+import PrimaryButton from '$/components/ui/PrimaryButton';
 
 const EditLessonSentenceDialog = () => {
   const classes = useStyles();
@@ -90,8 +90,8 @@ const EditLessonSentenceDialog = () => {
             control={
               <Checkbox
                 color="success"
-                checked={status === 'fluent'}
-                onChange={(event) => setStatus(event.target.checked ? 'fluent' : null)}
+                checked={status === LessonSentenceStatus.fluent}
+                onChange={(event) => setStatus(event.target.checked ? LessonSentenceStatus.fluent : null)}
               />
             }
             label={<Typography fontWeight={700} color="#61a821" sx={{userSelect: 'none'}}>Бегло</Typography>}
@@ -100,8 +100,8 @@ const EditLessonSentenceDialog = () => {
             control={
               <Checkbox
                 color="secondary"
-                checked={status === 'uncertain'}
-                onChange={(event) => setStatus(event.target.checked ? 'uncertain' : null)}
+                checked={status === LessonSentenceStatus.uncertain}
+                onChange={(event) => setStatus(event.target.checked ? LessonSentenceStatus.uncertain : null)}
               />
             }
             label={<Typography fontWeight={700} color="#ffcb14" sx={{userSelect: 'none'}}>Неуверенно</Typography>}
@@ -110,8 +110,8 @@ const EditLessonSentenceDialog = () => {
             control={
               <Checkbox
                 color="warning"
-                checked={status === 'mistaken'}
-                onChange={(event) => setStatus(event.target.checked ? 'mistaken' : null)}
+                checked={status === LessonSentenceStatus.mistaken}
+                onChange={(event) => setStatus(event.target.checked ? LessonSentenceStatus.mistaken : null)}
               />
             }
             label={<Typography fontWeight={700} color={theme.palette.warning.main} sx={{userSelect: 'none'}}>С ошибкой</Typography>}
@@ -120,8 +120,8 @@ const EditLessonSentenceDialog = () => {
             control={
               <Checkbox
                 color="error"
-                checked={status === 'error'}
-                onChange={(event) => setStatus(event.target.checked ? 'error' : null)}
+                checked={status === LessonSentenceStatus.error}
+                onChange={(event) => setStatus(event.target.checked ? LessonSentenceStatus.error : null)}
               />
             }
             label={<Typography fontWeight={700} color="error" sx={{userSelect: 'none'}}>Неправильно</Typography>}

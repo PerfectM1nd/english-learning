@@ -1,10 +1,12 @@
-import {showNetworkError} from '@/utils/snackbar';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import prisma from '@/prisma';
-import {addSentence, editSentenceLocal, setSentences} from '@/features/sentences/sentencesSlice';
-import api from '@/utils/api';
-import {RootState} from '@/app/store';
 import {Word} from '@prisma/client';
+
+import {showNetworkError} from '$/utils/snackbar';
+import prisma from '$/prisma';
+import {addSentence, editSentenceLocal, setSentences} from '$/features/sentences/sentencesSlice';
+import api from '$/utils/api';
+import {RootState} from '$/store';
+
 
 export const editSentence = createAsyncThunk(
   'sentences/editSentence',

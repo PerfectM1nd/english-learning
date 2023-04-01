@@ -1,11 +1,12 @@
 import React, {ReactElement} from 'react';
-import WordsList from '@/components/words/WordsList';
-import {wrapper} from '@/app/store';
-import {fetchWords} from '@/features/words/wordsThunks';
 import {AppProps} from 'next/app';
-import MainLayout from '@/layouts/MainLayout';
-import WordsSearchBar from '@/components/search/WordsSearchBar';
-import WordsPageHeader from '@/components/layout/WordsPageHeader';
+
+import WordsList from '$/components/words/WordsList';
+import {wrapper} from '$/store';
+import {fetchWords} from '$/features/words/wordsThunks';
+import MainLayout from '$/layouts/MainLayout';
+import WordsSearchBar from '$/components/search/WordsSearchBar';
+import WordsPageHeader from '$/components/layout/WordsPageHeader';
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async () => {
   await store.dispatch(fetchWords());

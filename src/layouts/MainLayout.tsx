@@ -1,16 +1,18 @@
 import React, {FC} from 'react';
 import {createUseStyles} from 'react-jss';
-import Header from '@/components/layout/Header';
 import {Varela_Round} from '@next/font/google';
-import CreateWordDialog from '@/components/dialogs/CreateWordDialog';
-import {PRIMARY_COLOR} from '@/app/colors';
-import CreateSentenceDialog from '@/components/dialogs/CreateSentenceDialog';
-import EditWordDialog from '@/components/dialogs/EditWordDialog';
-import EditSentenceDialog from '@/components/dialogs/EditSentenceDialog';
-import CreateLessonDialog from '@/components/dialogs/CreateLessonDialog';
-import EditLessonDialog from '@/components/dialogs/EditLessonDialog';
-import EditLessonSentenceDialog from '@/components/dialogs/EditLessonSentenceDialog';
-import useNotifier from '@/components/providers/NotificationProvider';
+
+import Header from '$/components/layout/Header';
+import CreateWordDialog from '$/components/dialogs/CreateWordDialog';
+import {PRIMARY_COLOR} from '$/app/colors';
+import CreateSentenceDialog from '$/components/dialogs/CreateSentenceDialog';
+import EditWordDialog from '$/components/dialogs/EditWordDialog';
+import EditSentenceDialog from '$/components/dialogs/EditSentenceDialog';
+import CreateLessonDialog from '$/components/dialogs/CreateLessonDialog';
+import EditLessonDialog from '$/components/dialogs/EditLessonDialog';
+import EditLessonSentenceDialog from '$/components/dialogs/EditLessonSentenceDialog';
+import useNotifier from '$/components/providers/NotificationProvider';
+
 export const VarelaRoundedFont = Varela_Round({
   weight: ['400'],
   subsets: ['latin'],

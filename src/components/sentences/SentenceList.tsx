@@ -1,8 +1,9 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
-import SentenceComponent from '@/components/sentences/SentenceComponent';
 import {Word} from '@prisma/client';
-import {useAppSelector} from '@/app/store';
+
+import SentenceComponent from '$/components/sentences/SentenceComponent';
+import {useAppSelector} from '$/store';
 
 const SentenceList = () => {
   const classes = useStyles();

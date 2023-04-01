@@ -1,6 +1,7 @@
 import React, {ReactElement} from 'react';
 import {AppProps} from 'next/app';
-import MainLayout from '@/layouts/MainLayout';
+
+import MainLayout from '$/layouts/MainLayout';
 
 export default function HomePage() {
   return (

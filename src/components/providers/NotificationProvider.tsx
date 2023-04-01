@@ -1,8 +1,9 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useSnackbar} from 'notistack';
-import {RootState} from '@/app/store';
-import {removeSnackbar} from '@/features/snackbar/snackbarSlice';
+
+import {RootState} from '$/store';
+import {removeSnackbar} from '$/features/snackbar/snackbarSlice';
 
 let displayed: Array<any> = [];
 

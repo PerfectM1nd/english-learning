@@ -1,9 +1,10 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
 import {TextField} from '@mui/material';
-import {VarelaRoundedFont} from '@/layouts/MainLayout';
-import {setWordSearchString} from '@/features/words/wordsSlice';
-import {useAppDispatch, useAppSelector} from '@/app/store';
+
+import {VarelaRoundedFont} from '$/layouts/MainLayout';
+import {setWordSearchString} from '$/features/words/wordsSlice';
+import {useAppDispatch, useAppSelector} from '$/store';
 
 const WordsSearchBar = () => {
   const classes = useStyles();

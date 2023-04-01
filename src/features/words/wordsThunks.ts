@@ -1,8 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import prisma from '@/prisma';
-import {addWord, editWordLocal, setWords} from '@/features/words/wordsSlice';
-import {showNetworkError} from '@/utils/snackbar';
-import api from '@/utils/api';
+
+import prisma from '$/prisma';
+import {addWord, editWordLocal, setWords} from '$/features/words/wordsSlice';
+import {showNetworkError} from '$/utils/snackbar';
+import api from '$/utils/api';
 
 export const fetchWordById = createAsyncThunk(
   'words/getWordById',

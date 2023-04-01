@@ -1,8 +1,9 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
-import PrimaryButton from '@/components/ui/PrimaryButton';
-import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setRepetitionModeEnabled} from '@/features/practiсe/practiceSlice';
+
+import PrimaryButton from '$/components/ui/PrimaryButton';
+import {useAppDispatch, useAppSelector} from '$/store';
+import {setRepetitionModeEnabled} from '$/features/practiсe/practiceSlice';
 
 const LessonSentencesRepetitionButton = () => {
   const classes = useStyles();

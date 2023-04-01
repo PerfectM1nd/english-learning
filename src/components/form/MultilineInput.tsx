@@ -1,7 +1,8 @@
 import React, {ChangeEvent, FC, useState} from 'react';
 import {TextField} from '@mui/material';
 import {createUseStyles} from 'react-jss';
-import {INPUT_PLACEHOLDER_COLOR} from '@/app/colors';
+
+import {INPUT_PLACEHOLDER_COLOR} from '$/app/colors';
 
 interface Props {
   label: string,

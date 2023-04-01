@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Snackbar, SnackbarCloseAction} from '@/types/Snackbar';
 import {SnackbarKey} from 'notistack';
+
+import {Snackbar, SnackbarCloseAction} from '$/types/Snackbar';
 
 export interface snackbarState {
   notifications: Array<any>
