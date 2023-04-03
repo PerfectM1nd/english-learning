@@ -1,12 +1,13 @@
 import React, {FC, useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {LessonSentence} from '@prisma/client';
+import {LessonSentence,LessonSentenceStatus} from '@prisma/client';
 import {IconButton} from '@mui/material';
-import {useAppDispatch, useAppSelector} from '@/app/store';
 import {DeleteForever} from '@mui/icons-material';
-import {deleteLessonSentence} from '@/features/practiсe/practiceThunks';
 import EditIcon from '@mui/icons-material/Edit';
-import {setEditingLessonSentence, setEditLessonSentenceDialogOpen} from '@/features/dialogs/dialogsSlice';
+
+import {useAppDispatch, useAppSelector} from '$/store';
+import {deleteLessonSentence} from '$/features/practiсe/practiceThunks';
+import {setEditingLessonSentence, setEditLessonSentenceDialogOpen} from '$/features/dialogs/dialogsSlice';
 
 interface Props {
   lessonSentence: LessonSentence
@@ -48,20 +49,14 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
   }, [repetitionModeEnabled]);
   
   const getBackgroundColor = () => {
-    switch (lessonSentence.status) {
-      case 'fluent': {
-        return '#edffeb';
-      }
-      case 'uncertain': {
-        return '#fff8d6';
-      }
-      case 'mistaken': {
-        return '#ffd2af';
-      }
-      case 'error': {
-        return '#ff9c9c';
-      }
-    }
+    const mapStatusToColor: Record<LessonSentenceStatus, string> = {
+      [LessonSentenceStatus.fluent]: '#edffeb',
+      [LessonSentenceStatus.uncertain]: '#fff8d6',
+      [LessonSentenceStatus.mistaken]: '#ffd2af',
+      [LessonSentenceStatus.error]: '#ff9c9c',
+    };
+
+    return mapStatusToColor[lessonSentence.status];
   };
 
   return (

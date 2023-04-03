@@ -1,5 +1,6 @@
-import {showSnackbar} from '../features/snackbar/snackbarSlice';
 import {Action, Dispatch} from '@reduxjs/toolkit';
+
+import {showSnackbar} from '$/features/snackbar/snackbarSlice';
 
 export const showInfoSnackbar = (dispatch: Dispatch<Action>, message: string) => {
   dispatch(showSnackbar({

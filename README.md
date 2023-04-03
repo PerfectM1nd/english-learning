@@ -3,7 +3,7 @@
 1) First, install npm packages:
 
 ```bash
-npm install
+yarn install
 ```
 
 2) Then install Postgres database
@@ -13,14 +13,14 @@ npm install
 4) Migrate prisma schemes
 
 ```bash
-prisma migrate dev
-prisma generate
+yarn prisma migrate dev
+yarn prisma generate
 ```
 
 5) Finally, run the following command:
 
 ```bash
-npm run dev
+yarn run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.

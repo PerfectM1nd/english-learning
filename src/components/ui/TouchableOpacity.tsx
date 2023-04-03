@@ -1,5 +1,6 @@
 import React, {CSSProperties, FC, useRef, useState} from 'react';
 import {createUseStyles} from 'react-jss';
+
 import Timeout = NodeJS.Timeout;
 
 interface Props {

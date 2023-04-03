@@ -1,13 +1,15 @@
 import 'regenerator-runtime';
 import type {AppProps} from 'next/app';
 import Head from 'next/head';
-import '../global-styles.css';
-import {wrapper} from '@/app/store';
 import {SnackbarProvider} from 'notistack';
 import {NextPage} from 'next';
 import {ReactElement, ReactNode} from 'react';
-import {theme} from '@/app/theme';
 import {ThemeProvider} from '@mui/material/styles';
+
+import '../global-styles.css';
+
+import {theme} from '$/app/theme';
+import {wrapper} from '$/store';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: AppProps, page: ReactElement) => ReactNode

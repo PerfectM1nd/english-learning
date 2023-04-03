@@ -1,7 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Lesson, LessonSentence} from '@prisma/client';
 import {HYDRATE} from 'next-redux-wrapper';
-import {shuffleArray} from '@/utils/array';
+
+import {shuffleArray} from '$/utils/array';
 
 export interface PracticeState {
   lessons: Lesson[],

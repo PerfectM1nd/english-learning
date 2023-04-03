@@ -3,13 +3,14 @@ import {createUseStyles} from 'react-jss';
 import {IconButton} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
-import {useAppDispatch} from '@/app/store';
+import {useRouter} from 'next/router';
+
+import {useAppDispatch} from '$/store';
 import {
   setSentenceCreateDialogOpen,
   setWordCreateDialogOpen,
   setWordEditDialogOpen
-} from '@/features/dialogs/dialogsSlice';
-import {useRouter} from 'next/router';
+} from '$/features/dialogs/dialogsSlice';
 
 const WordsPageHeader = () => {
   const classes = useStyles();

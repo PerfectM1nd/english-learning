@@ -1,7 +1,8 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
-import LessonSentencesRepetitionButton from '@/components/practise/lessonSentences/LessonSentencesRepetitionButton';
-import LessonSentenceGuideButton from '@/components/practise/lessonSentences/LessonSentenceGuideButton';
+
+import LessonSentencesRepetitionButton from '$/components/practise/lessonSentences/LessonSentencesRepetitionButton';
+import LessonSentenceGuideButton from '$/components/practise/lessonSentences/LessonSentenceGuideButton';
 
 const LessonSentencesHeader = () => {
   const classes = useStyles();

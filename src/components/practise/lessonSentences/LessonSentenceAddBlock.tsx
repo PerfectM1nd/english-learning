@@ -1,12 +1,14 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppDispatch} from '@/app/store';
-import {createLessonSentence} from '@/features/practiсe/practiceThunks';
 import TextareaAutosize from 'react-textarea-autosize';
 import SpeechRecognition, {useSpeechRecognition} from 'react-speech-recognition';
 import {Checkbox, FormControlLabel, Typography} from '@mui/material';
-import {theme} from '@/app/theme';
-import {LessonSentenceStatus} from '@/types/Lesson';
+import { LessonSentenceStatus } from '@prisma/client';
+
+import {createLessonSentence} from '$/features/practiсe/practiceThunks';
+import {useAppDispatch} from '$/store';
+import {theme} from '$/app/theme';
+import {LanguageEnum} from '$/enums';
 
 interface Props {
   lessonId: number
@@ -18,11 +20,11 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
 
   const [englishText, setEnglishText] = useState('');
   const [russianText, setRussianText] = useState('');
-  const [status, setStatus] = useState<LessonSentenceStatus>('uncertain');
+  const [status, setStatus] = useState<LessonSentenceStatus>(LessonSentenceStatus.uncertain);
   const [commentary, setCommentary] = useState('');
   const [showCommentaryField, setShowCommentaryField] = useState(false);
 
-  const [currentVoiceInput, setCurrentVoiceInput] = useState<'russian' | 'english'>('russian');
+  const [currentVoiceInput, setCurrentVoiceInput] = useState<LanguageEnum>(LanguageEnum.russian);
 
   const englishInputRef = useRef<HTMLTextAreaElement>(null);
   const russianInputRef = useRef<HTMLTextAreaElement>(null);
@@ -46,35 +48,35 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
       case '1': {
         russianInputRef.current?.focus();
         event.preventDefault();
-        setCurrentVoiceInput('russian');
+        setCurrentVoiceInput(LanguageEnum.russian);
         SpeechRecognition.startListening({language: 'ru'});
         return;
       }
       case '2': {
         englishInputRef.current?.focus();
         event.preventDefault();
-        setCurrentVoiceInput('english');
+        setCurrentVoiceInput(LanguageEnum.english);
         SpeechRecognition.startListening({language: 'en-US'});
         return;
       }
       case '3': {
         event.preventDefault();
-        setStatus('fluent');
+        setStatus(LessonSentenceStatus.fluent);
         return;
       }
       case '4': {
         event.preventDefault();
-        setStatus('uncertain');
+        setStatus(LessonSentenceStatus.uncertain);
         return;
       }
       case '5': {
         event.preventDefault();
-        setStatus('mistaken');
+        setStatus(LessonSentenceStatus.mistaken);
         return;
       }
       case '6': {
         event.preventDefault();
-        setStatus('error');
+        setStatus(LessonSentenceStatus.error);
         return;
       }
       case '7': {
@@ -104,12 +106,12 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
     setEnglishText('');
     setRussianText('');
     setCommentary('');
-    setStatus('uncertain');
+    setStatus(LessonSentenceStatus.uncertain);
     SpeechRecognition.stopListening();
   };
 
   useEffect(() => {
-    currentVoiceInput === 'russian' ?
+    currentVoiceInput === LanguageEnum.russian ?
       setRussianText(transcript.charAt(0).toUpperCase() + transcript.substring(1)) :
       setEnglishText(transcript.charAt(0).toUpperCase() + transcript.substring(1));
   }, [transcript]);
@@ -160,8 +162,8 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
           control={
             <Checkbox
               color="success"
-              checked={status === 'fluent'}
-              onChange={() => setStatus('fluent')}
+              checked={status === LessonSentenceStatus.fluent}
+              onChange={() => setStatus(LessonSentenceStatus.fluent)}
             />
           }
           label={<Typography fontWeight={700} color="#61a821" sx={{userSelect: 'none'}}>Бегло</Typography>}
@@ -170,8 +172,8 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
           control={
             <Checkbox
               color="secondary"
-              checked={status === 'uncertain'}
-              onChange={() => setStatus('uncertain')}
+              checked={status === LessonSentenceStatus.uncertain}
+              onChange={() => setStatus(LessonSentenceStatus.uncertain)}
             />
           }
           label={<Typography fontWeight={700} color="#ffcb14" sx={{userSelect: 'none'}}>Неуверенно</Typography>}
@@ -180,8 +182,8 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
           control={
             <Checkbox
               color="warning"
-              checked={status === 'mistaken'}
-              onChange={() => setStatus('mistaken')}
+              checked={status === LessonSentenceStatus.mistaken}
+              onChange={() => setStatus(LessonSentenceStatus.mistaken)}
             />
           }
           label={<Typography fontWeight={700} color={theme.palette.warning.main} sx={{userSelect: 'none'}}>С ошибкой</Typography>}
@@ -190,8 +192,8 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
           control={
             <Checkbox
               color="error"
-              checked={status === 'error'}
-              onChange={() => setStatus('error')}
+              checked={status === LessonSentenceStatus.error}
+              onChange={() => setStatus(LessonSentenceStatus.error)}
             />
           }
           label={<Typography fontWeight={700} color="error" sx={{userSelect: 'none'}}>Неправильно</Typography>}

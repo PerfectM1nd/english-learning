@@ -1,12 +1,13 @@
 import React, {ReactElement} from 'react';
-import {wrapper} from '@/app/store';
 import {AppProps} from 'next/app';
-import MainLayout from '@/layouts/MainLayout';
-import {fetchLessonSentences} from '@/features/practiсe/practiceThunks';
-import LessonSentencesList from '@/components/practise/lessonSentences/LessonSentencesList';
-import {NextPageWithLayout} from '@/pages/_app';
-import LessonSentenceAddBlock from '@/components/practise/lessonSentences/LessonSentenceAddBlock';
-import LessonSentencesHeader from '@/components/layout/LessonSentencesHeader';
+
+import {wrapper} from '$/store';
+import MainLayout from '$/layouts/MainLayout';
+import {fetchLessonSentences} from '$/features/practiсe/practiceThunks';
+import LessonSentencesList from '$/components/practise/lessonSentences/LessonSentencesList';
+import {NextPageWithLayout} from '$/pages/_app';
+import LessonSentenceAddBlock from '$/components/practise/lessonSentences/LessonSentenceAddBlock';
+import LessonSentencesHeader from '$/components/layout/LessonSentencesHeader';
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({query}) => {
   const lessonId = Number.parseInt(query?.lessonId as string);

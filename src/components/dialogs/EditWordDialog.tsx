@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setWordEditDialogOpen} from '@/features/dialogs/dialogsSlice';
-import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Dialog} from '@mui/material';
-import TextInput from '@/components/form/TextInput';
-import PrimaryButton from '@/components/ui/PrimaryButton';
-import {editWord} from '@/features/words/wordsThunks';
 import {Word} from '@prisma/client';
+
+import {useAppDispatch, useAppSelector} from '$/store';
+import {setWordEditDialogOpen} from '$/features/dialogs/dialogsSlice';
+import {DialogTransition} from '$/components/dialogs/DialogTransition';
+import TextInput from '$/components/form/TextInput';
+import PrimaryButton from '$/components/ui/PrimaryButton';
+import {editWord} from '$/features/words/wordsThunks';
+
 
 const EditWordDialog = () => {
   const classes = useStyles();

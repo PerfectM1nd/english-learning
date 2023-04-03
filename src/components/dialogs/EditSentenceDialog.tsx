@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setSentenceEditDialogOpen} from '@/features/dialogs/dialogsSlice';
-import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Dialog} from '@mui/material';
-import PrimaryButton from '@/components/ui/PrimaryButton';
 import {Sentence} from '@prisma/client';
-import {editSentence} from '@/features/sentences/sentencesThunks';
-import MultilineInput from '@/components/form/MultilineInput';
+
+import {useAppDispatch, useAppSelector} from '$/store';
+import {setSentenceEditDialogOpen} from '$/features/dialogs/dialogsSlice';
+import {DialogTransition} from '$/components/dialogs/DialogTransition';
+import PrimaryButton from '$/components/ui/PrimaryButton';
+import {editSentence} from '$/features/sentences/sentencesThunks';
+import MultilineInput from '$/components/form/MultilineInput';
 
 const EditSentenceDialog = () => {
   const classes = useStyles();

@@ -9,7 +9,8 @@
     "plugin:react/recommended",
     "next",
     "next/core-web-vitals",
-    "plugin:unicorn/recommended"
+    "plugin:unicorn/recommended",
+    "plugin:import/recommended"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -24,7 +25,8 @@
     "mui-unused-classes",
     "react-jss",
     "unicorn",
-    "jss"
+    "jss",
+    "import"
   ],
   "rules": {
     "semi": "warn",
@@ -44,7 +46,6 @@
     "unused-imports/no-unused-imports": "warn",
     "prefer-const": "off",
     "react/no-unescaped-entities": "off",
-    "object-curly-spacing": "warn",
     "react-hooks/exhaustive-deps": "off",
     "mui-unused-classes/unused-classes": 2,
     "react/no-string-refs": "off",
@@ -76,6 +77,11 @@
       {
         "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
-    ]
+    ],
+    "import/order": [2, { "newlines-between": "always" }],
+    "import/no-named-export": "off",
+    "import/named": "off",
+    "import/no-named-as-default": "off",
+    "import/newline-after-import": [2, { "count": 1 }]
   }
 }

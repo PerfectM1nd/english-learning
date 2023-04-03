@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix --ext .ts,.tsx,.js src"
@@ -36,12 +36,13 @@
     "typescript": "5.0.2"
   },
   "devDependencies": {
-    "eslint-plugin-jss": "file:packages/eslint-plugin-jss",
     "@types/howler": "^2.2.7",
     "@types/react-speech-recognition": "^3.9.1",
     "eslint": "^8.32.0",
     "eslint-config-next": "^13.1.6",
     "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jss": "file:packages/eslint-plugin-jss",
     "eslint-plugin-mui-unused-classes": "github:4commerce-technologies-AG/eslint-plugin-material-ui-unused-classes",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-jss": "^0.0.1",

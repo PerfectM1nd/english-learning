@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setWordCreateDialogOpen} from '@/features/dialogs/dialogsSlice';
-import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Dialog} from '@mui/material';
-import TextInput from '@/components/form/TextInput';
-import PrimaryButton from '@/components/ui/PrimaryButton';
-import {createNewWord} from '@/features/words/wordsThunks';
+
+import {useAppDispatch, useAppSelector} from '$/store';
+import {setWordCreateDialogOpen} from '$/features/dialogs/dialogsSlice';
+import {DialogTransition} from '$/components/dialogs/DialogTransition';
+import TextInput from '$/components/form/TextInput';
+import PrimaryButton from '$/components/ui/PrimaryButton';
+import {createNewWord} from '$/features/words/wordsThunks';
 
 const CreateWordDialog = () => {
   const classes = useStyles();

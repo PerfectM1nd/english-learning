@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setSentenceCreateDialogOpen} from '@/features/dialogs/dialogsSlice';
-import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Dialog} from '@mui/material';
-import PrimaryButton from '@/components/ui/PrimaryButton';
-import {createNewSentence} from '@/features/sentences/sentencesThunks';
-import MultilineInput from '@/components/form/MultilineInput';
 import SpeechRecognition, {useSpeechRecognition} from 'react-speech-recognition';
+
+import {useAppDispatch, useAppSelector} from '$/store';
+import {setSentenceCreateDialogOpen} from '$/features/dialogs/dialogsSlice';
+import {DialogTransition} from '$/components/dialogs/DialogTransition';
+import PrimaryButton from '$/components/ui/PrimaryButton';
+import {createNewSentence} from '$/features/sentences/sentencesThunks';
+import MultilineInput from '$/components/form/MultilineInput';
+
 
 const CreateSentenceDialog = () => {
   const classes = useStyles();

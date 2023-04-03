@@ -3,12 +3,13 @@ import {createUseStyles} from 'react-jss';
 import {Sentence} from '@prisma/client';
 import EditIcon from '@mui/icons-material/Edit';
 import {IconButton} from '@mui/material';
+
 import {
   setEditingSentence,
   setSentenceEditDialogOpen
-} from '@/features/dialogs/dialogsSlice';
-import {useAppDispatch} from '@/app/store';
-import TouchableOpacity from '@/components/ui/TouchableOpacity';
+} from '$/features/dialogs/dialogsSlice';
+import {useAppDispatch} from '$/store';
+import TouchableOpacity from '$/components/ui/TouchableOpacity';
 
 interface Props {
   sentence: Sentence

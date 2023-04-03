@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {useAppDispatch, useAppSelector} from '@/app/store';
-import {setCreateLessonDialogOpen} from '@/features/dialogs/dialogsSlice';
-import {DialogTransition} from '@/components/dialogs/DialogTransition';
 import {Dialog, MenuItem} from '@mui/material';
-import TextInput from '@/components/form/TextInput';
-import PrimaryButton from '@/components/ui/PrimaryButton';
-import {createNewLesson} from '@/features/practiсe/practiceThunks';
 import {EnglishLevel} from '@prisma/client';
-import SelectInput from '@/components/form/SelectInput';
+
+import {useAppDispatch, useAppSelector} from '$/store';
+import {setCreateLessonDialogOpen} from '$/features/dialogs/dialogsSlice';
+import {DialogTransition} from '$/components/dialogs/DialogTransition';
+import TextInput from '$/components/form/TextInput';
+import PrimaryButton from '$/components/ui/PrimaryButton';
+import {createNewLesson} from '$/features/practiсe/practiceThunks';
+import SelectInput from '$/components/form/SelectInput';
 
 const CreateLessonDialog = () => {
   const classes = useStyles();

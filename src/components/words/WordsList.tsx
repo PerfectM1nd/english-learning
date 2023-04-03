@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import WordComponent from '@/components/words/WordComponent';
-import {useAppSelector} from '@/app/store';
 import {Word} from '@prisma/client';
+
+import WordComponent from '$/components/words/WordComponent';
+import {useAppSelector} from '$/store';
 
 const WordsList = () => {
   const classes = useStyles();

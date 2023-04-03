@@ -1,1 +1,0 @@
-export type LessonSentenceStatus = 'fluent' | 'uncertain' | 'mistaken' | 'error';

@@ -1,15 +1,16 @@
-import {showNetworkError} from '@/utils/snackbar';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import api from '@/utils/api';
+import {LessonSentenceStatus} from '@prisma/client';
+
+import {showNetworkError} from '$/utils/snackbar';
+import api from '$/utils/api';
 import {
   addLesson,
   addLessonSentence, deleteLessonSentenceLocal,
   editLessonLocal, editLessonSentenceLocal,
   setLessons,
   setLessonSentences
-} from '@/features/practiсe/practiceSlice';
-import prisma from '@/prisma';
-import {LessonSentenceStatus} from '@/types/Lesson';
+} from '$/features/practiсe/practiceSlice';
+import prisma from '$/prisma';
 
 export const editLessonSentence = createAsyncThunk(
   'practice/createLessonSentence',
@@ -18,7 +19,7 @@ export const editLessonSentence = createAsyncThunk(
     lessonId: number,
     englishText: string,
     russianText: string,
-    status: LessonSentenceStatus,
+    status: keyof typeof LessonSentenceStatus,
     commentary: string
   }, {dispatch}) => {
     try {
