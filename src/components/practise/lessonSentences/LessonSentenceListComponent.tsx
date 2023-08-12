@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {createUseStyles} from 'react-jss';
-import {LessonSentence,LessonSentenceStatus} from '@prisma/client';
+import {LessonSentence, LessonSentenceStatus} from '@prisma/client';
 import {IconButton} from '@mui/material';
 import {DeleteForever} from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -37,17 +37,16 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
     const msg = new SpeechSynthesisUtterance(lessonSentence.englishText);
     window.speechSynthesis.speak(msg);
   };
-  
+
   const handleClick = () => {
-    englishTextHidden ?
-      showEnglishText() :
-      playSound();
+    englishTextHidden && showEnglishText();
+    playSound();
   };
 
   useEffect(() => {
     setEnglishTextHidden(repetitionModeEnabled);
   }, [repetitionModeEnabled]);
-  
+
   const getBackgroundColor = () => {
     const mapStatusToColor: Record<LessonSentenceStatus, string> = {
       [LessonSentenceStatus.fluent]: '#edffeb',
@@ -62,7 +61,7 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
   return (
     <li
       onClick={handleClick}
-      className={classes.container} 
+      className={classes.container}
       style={{
         backgroundColor: getBackgroundColor()
       }}
@@ -90,7 +89,7 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
             backgroundColor: 'rgba(255,255,255,0.8)',
           }
         }}>
-          <EditIcon />
+          <EditIcon/>
         </IconButton>
         <IconButton size="medium" onClick={handleDeleteButtonClick} sx={{
           backgroundColor: getBackgroundColor(),
@@ -98,7 +97,7 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
             backgroundColor: 'rgba(255,255,255,0.8)',
           }
         }}>
-          <DeleteForever />
+          <DeleteForever/>
         </IconButton>
       </div>
     </li>
@@ -107,8 +106,9 @@ const LessonSentenceListComponent: FC<Props> = ({lessonSentence}) => {
 
 const useStyles = createUseStyles({
   commentaryText: {
-    fontSize: 13,
+    fontSize: 15,
     color: 'gray',
+    mixBlendMode: 'difference',
     padding: '5px 0'
   },
   buttonContainer: {

@@ -8,6 +8,7 @@ import WordHeader from '$/components/layout/WordHeader';
 import {fetchSentencesForWord} from '$/features/sentences/sentencesThunks';
 import SentenceList from '$/components/sentences/SentenceList';
 import {setCurrentViewWord} from '$/features/words/wordsSlice';
+import WordsPageHeader from '$/components/layout/WordsPageHeader';
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({query}) => {
   const wordId = Number.parseInt(query?.wordId as string);
@@ -21,6 +22,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({qu
 const WordPage = () => {
   return (
     <>
+      <WordsPageHeader />
       <WordHeader/>
       <SentenceList/>
     </>

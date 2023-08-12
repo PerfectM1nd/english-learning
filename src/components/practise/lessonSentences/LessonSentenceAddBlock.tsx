@@ -88,6 +88,9 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
         setShowCommentaryField(!showCommentaryField);
         return;
       }
+      default: {
+        return;
+      }
     }
   };
   
@@ -133,7 +136,7 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
   }, [handleKeyPress]);
 
   return (
-    <div className={classes.container}>
+    <form className={classes.container}>
       <div className={classes.inputLabel}>Sentence in Russian</div>
       <TextareaAutosize
         onChange={(event) => setRussianText(event.target.value)}
@@ -199,7 +202,7 @@ const LessonSentenceAddBlock: FC<Props> = ({lessonId}) => {
           label={<Typography fontWeight={700} color="error" sx={{userSelect: 'none'}}>Неправильно</Typography>}
         />
       </div>
-    </div>
+    </form>
   );
 };
 
